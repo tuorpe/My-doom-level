@@ -8,6 +8,10 @@ public class Keycard : MonoBehaviour, IInteractable
     {
         // Not applicable for Keycard
     }
+
+    // Not used for Keycard
+    public void UnInteract() { }
+
     public void ExitInteractArea()
     {
         // Not applicable for Keycard

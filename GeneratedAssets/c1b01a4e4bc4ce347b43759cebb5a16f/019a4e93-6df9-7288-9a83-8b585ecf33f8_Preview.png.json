@@ -1,0 +1,11 @@
+{
+    "asset": "c1b01a4e4bc4ce347b43759cebb5a16f",
+    "fileName": "019a4e93-6df9-7288-9a83-8b585ecf33f8_Preview.png",
+    "prompt": "Light switch realistic",
+    "negativePrompt": "",
+    "model": "44ec3749-963a-44b1-aa54-dc19f6ed8ab2",
+    "modelName": "Unity Texture2D",
+    "customSeed": 124224407,
+    "w3CTraceId": "43fe7548f9f0390f7f6f81930a73b1ac",
+    "refinementMode": "Generation"
+}

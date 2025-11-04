@@ -17,6 +17,7 @@ public class Door : MonoBehaviour, IDoor, IInteractable
     }
     [SerializeField] private DoorDirection doorOpeningDirection;
     [SerializeField] private bool isLocked;
+    [SerializeField] private bool isAutomatic = true;
     [SerializeField] private float closingTimeout = 5f;
     [SerializeField] private float movementSpeed = 1f;
 
@@ -25,7 +26,7 @@ public class Door : MonoBehaviour, IDoor, IInteractable
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
     {
-        doorTransform = transform.GetChild(0).GetComponent<Transform>();
+        doorTransform = transform.GetChild(0);
         closePosition = doorTransform.position;
         targetPosition = doorTransform.position;
         var meshRenderer = GetComponentInChildren<MeshRenderer>();
@@ -45,7 +46,11 @@ public class Door : MonoBehaviour, IDoor, IInteractable
         if (isLocked)
             return;
         Open();
-        Debug.Log("Let's open the door!");
+    }
+
+    public void UnInteract()
+    {
+        Close();
     }
 
     // Update is called once per frame
@@ -83,6 +88,7 @@ public class Door : MonoBehaviour, IDoor, IInteractable
     public void ExitInteractArea()
     {
         blockedClosing = false;
-        Invoke(nameof(Close), closingTimeout);
+        if(isAutomatic)
+            Invoke(nameof(Close), closingTimeout);
     }
 }

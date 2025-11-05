@@ -52,8 +52,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 6.891577, y: 8.084954, z: 14.145218}
-  m_Center: {x: -0.35364246, y: 3.5424776, z: -0.9935074}
+  m_Size: {x: 6.384882, y: 3.1873326, z: 2.8217964}
+  m_Center: {x: -0.10029507, y: 1.0936668, z: -2.2414188}
 --- !u!114 &3181771283814810868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,23 +69,4 @@ MonoBehaviour:
   automaticSwitch: 1
   onSprite: {fileID: 0}
   offSprite: {fileID: 0}
-  interactable:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  interactableGameobjects: []

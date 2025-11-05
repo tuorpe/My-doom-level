@@ -20,6 +20,7 @@ public class Door : MonoBehaviour, IDoor, IInteractable
     [SerializeField] private bool isAutomatic = true;
     [SerializeField] private float closingTimeout = 5f;
     [SerializeField] private float movementSpeed = 1f;
+    [SerializeField] private bool isAutoOpen = false;
 
     private bool blockedClosing = false;
     private Transform doorTransform;
@@ -81,6 +82,8 @@ public class Door : MonoBehaviour, IDoor, IInteractable
         Debug.Log("Door collided with " + other.gameObject.name);
         if(!other.CompareTag("Player"))
             return;
+        if(!isLocked && isAutoOpen)
+            Open();
         blockedClosing = true;
     }
 

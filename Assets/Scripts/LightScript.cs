@@ -9,6 +9,7 @@ public class LightScript : MonoBehaviour, IInteractable
     [SerializeField] private bool isBroken = false;
     [SerializeField, Range(1f, 20f)] private float brokenFlickerSpeed = 1f;
     [SerializeField, Range(1f, 10f)] private float brokenIntensityMultiplier = 1f;
+    [SerializeField] private float turnOnDelay = 0f;
     private float currentIntensity = 0f;
     private float targetIntensity = 0f;
     private Light lightObject;
@@ -33,11 +34,18 @@ public class LightScript : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        targetIntensity = intensityOn;
+        if(turnOnDelay > 0f)
+            Invoke(nameof(TurnOnLight), turnOnDelay);
+        else
+            TurnOnLight();
         Debug.Log("Light Intensity set to: " + targetIntensity);
         
     }
 
+    private void TurnOnLight()
+    {
+        targetIntensity = intensityOn;
+    }
     private float BrokenLight()
         {
             float perlin = Mathf.PerlinNoise1D(Time.time * brokenFlickerSpeed);

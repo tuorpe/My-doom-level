@@ -31,6 +31,8 @@ public class Switch : MonoBehaviour, IInteractable
             }
         }
     }
+    
+    [ContextMenu("Interact Switch")]
     public void Interact()
     {
         if(automaticSwitch)

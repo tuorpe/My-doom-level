@@ -4,17 +4,23 @@ using UnityEngine.ProBuilder;
 public class EnemyPlatform : MonoBehaviour, IInteractable
 {
     [SerializeField, Range(0.1f, 5f)] private float descentTime = 1f;
+    [SerializeField] private float movementDelay = 0f;
     private float t;
     private bool isActivated;
-    private float targetHeight;
-    private float startHeight;
+    private float targetHeightDelta;
+    private float startPosition;
+
+    private Transform platform;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
     {
-        var platform = GetComponentInChildren<PolyShape>();
+        var platPoly = GetComponentInChildren<PolyShape>();
+        platform = platPoly.transform;
         var targetPosition = transform.Find("TargetHeight").position;
-        startHeight = transform.position.y;
-        targetHeight = startHeight - (platform.extrude - targetPosition.y);
+        startPosition = platform.transform.position.y;
+        // Calculate the needed diffenece in Y-axis to move the object
+        targetHeightDelta = targetPosition.y - platPoly.extrude;
+        //targetHeight = startHeight - (platform.extrude - targetPosition.y);
     }
 
     // Update is called once per frame
@@ -23,9 +29,9 @@ public class EnemyPlatform : MonoBehaviour, IInteractable
         if (!isActivated) 
             return;
         t += Time.deltaTime / descentTime;
-        var position = transform.position;
-        position.y = Mathf.Lerp(startHeight, targetHeight, t);
-        transform.position = position;
+        var position = platform.position;
+        position.y = Mathf.Lerp(startPosition, targetHeightDelta, t);
+        platform.position = position;
         if(t >= 1f)
             isActivated = false;
 
@@ -33,9 +39,13 @@ public class EnemyPlatform : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        isActivated = true;
+        Invoke(nameof(ActivatePlatform), movementDelay);
     }
 
+    public void ActivatePlatform()
+    {
+        isActivated = true;
+    }
     // Not used for EnemyPlatform
     public void UnInteract() { }
 
